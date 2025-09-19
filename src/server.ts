@@ -5,6 +5,7 @@ import { errors } from "celebrate";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 import { userRoute } from "./routes/user.route";
 import { meterRoute } from "./routes/meter.route";
+import { readingRouter } from "./routes/reading.route";
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/meters", meterRoute);
+app.use("/api/reading", readingRouter);
 
 app.use(errors());
 app.use(errorHandler);
