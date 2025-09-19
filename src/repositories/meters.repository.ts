@@ -13,4 +13,9 @@ export class MeterRepository {
         });
         return meterData;
     }
+
+    async getById(id: string) {
+        const data = await prisma.medidor.findUnique({ where: { id } });
+        return data;
+    }
 }
