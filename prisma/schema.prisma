@@ -8,10 +8,11 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  email    String   @unique
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  email    String    @unique
   password String
-  role     String   @default("tecnico")
+  role     String    @default("tecnico")
+  leituras Leitura[] @relation("LeiturasDoTecnico")
 }
 
 model Medidor {
@@ -25,7 +26,10 @@ model Medidor {
 model Leitura {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   medidorId  String   @db.ObjectId
+  tecnicoId  String   @db.ObjectId
   dataHora   DateTime
   consumoKwh Float
   medidor    Medidor  @relation(fields: [medidorId], references: [id])
+  tecnico    User     @relation("LeiturasDoTecnico", fields: [tecnicoId], references: [id])
 }
+
