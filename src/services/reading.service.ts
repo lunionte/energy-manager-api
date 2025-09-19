@@ -14,6 +14,9 @@ export class ReadingService {
         if (!medidor) {
             throw new ValidationError("Medidor não encontrado");
         }
+        if (consumoKwh < 0) {
+            throw new ValidationError("Consumo não pode ser negativo");
+        }
 
         const reading = await this.readingRepository.create(tecnicoId, medidorId, consumoKwh);
         return reading;
