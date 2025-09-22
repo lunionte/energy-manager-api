@@ -27,7 +27,9 @@ model Leitura {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   medidorId  String   @db.ObjectId
   tecnicoId  String   @db.ObjectId
+  tecnicoAtualizacaoId String?
   dataHora   DateTime
+  dataHoraAtualizacao DateTime?
   consumoKwh Float
   medidor    Medidor  @relation(fields: [medidorId], references: [id])
   tecnico    User     @relation("LeiturasDoTecnico", fields: [tecnicoId], references: [id])
