@@ -4,3 +4,8 @@ export const newReadingSchema = Joi.object().keys({
     medidorId: Joi.string().max(30).trim().required(),
     consumoKwh: Joi.number().required(),
 });
+
+export const updateReadingSchema = Joi.object().keys({
+    medidorId: Joi.string().length(24).trim().required(),
+    consumoKwh: Joi.number().optional(),
+});

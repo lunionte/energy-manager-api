@@ -19,4 +19,24 @@ export class ReadingRepository {
         const data = await prisma.leitura.findMany();
         return data;
     }
+
+    async getById(id: string) {
+        const data = await prisma.leitura.findUnique({
+            where: { id },
+        });
+        return data;
+    }
+
+    async update(readingId: string, medidorId: string, tecnicoId: string, consumoKwh: number) {
+        const data = await prisma.leitura.update({
+            where: { id: readingId },
+            data: {
+                medidorId,
+                tecnicoAtualizacaoId: tecnicoId,
+                consumoKwh,
+                dataHoraAtualizacao: new Date(),
+            },
+        });
+        return data;
+    }
 }

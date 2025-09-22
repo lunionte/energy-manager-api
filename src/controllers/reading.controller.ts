@@ -8,4 +8,13 @@ export class ReadingController {
         const data = await new ReadingService().create(tecnicoId, medidorId, consumoKwh);
         res.json({ data });
     }
+
+    static async update(req: Request, res: Response) {
+        const { id } = req.params;
+        const { consumoKwh, medidorId } = req.body;
+        const tecnicoId = req.user.id;
+
+        const data = await new ReadingService().update(id, medidorId, tecnicoId, consumoKwh);
+        res.json(data);
+    }
 }
