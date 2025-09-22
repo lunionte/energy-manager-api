@@ -18,4 +18,16 @@ export class MeterRepository {
         const data = await prisma.medidor.findUnique({ where: { id } });
         return data;
     }
+
+    async update(id: string, serial: string, location: string, status: string) {
+        const data = await prisma.medidor.update({
+            where: { id },
+            data: {
+                serial,
+                location,
+                status,
+            },
+        });
+        return data;
+    }
 }
